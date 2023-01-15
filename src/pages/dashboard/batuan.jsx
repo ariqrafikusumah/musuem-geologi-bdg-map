@@ -1,4 +1,4 @@
-import React, { useState, useEffect, } from "react";
+import React, { useState } from "react";
 import {
     Card,
     CardHeader,
@@ -15,20 +15,48 @@ import {
 import axios from "axios";
 
 export function Batuan() {
-    const baseURL = 'https://sbc-sebatcabut.herokuapp.com'; // data API 
+    const url = "https://fakestoreapi.com";
+    const [formData, setFormData] = useState({
+        title: 'test product',
+        price: 13.5,
+        description: 'lorem ipsum set',
+        image: 'https://i.pravatar.cc',
+        category: 'electronic'
+    });
 
-    axios.post(baseURL +'/batuan', {
-        nup_bmn: 'Finn',
-      })
-      .then((response) => {
-        console.log(response.data.data.data);
-      }, (error) => {
-        console.log(error);
-      });
+    const [errors, setErrors] = useState({});
 
+    const handleChange = event => {
+        setFormData({ ...formData, [event.target.name]: event.target.value });
+        setErrors({ ...errors, [event.target.name]: '' });
+    }
+    const validate = () => {
+        const newErrors = {};
+        if (!formData.title) {
+            newErrors.title = "NUP BMN is required", alert('NUP BMN is required');
+        }
+        return newErrors;
+    }
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        const newErrors = validate();
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+        } else {
+            axios.post(url + '/products', formData)
+                .then(res => {
+                    console.log(res);
+                    console.log(res.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    }
     return (
         <Card className="mb-12">
-            <form method="post" >
+            <form onSubmit={handleSubmit} >
                 <div className="">
                     <CardHeader
                         floated={false}
@@ -47,7 +75,7 @@ export function Batuan() {
                                 Kategori BMN *
                             </Typography>
                             <Select className="w-full shadow-lg" label="Pilih Kategori BMN" required>
-                                <Option >6.02.02.99.999</Option>
+                                <Option>6.02.02.99.999</Option>
                                 <Option>6.06.01.05.005</Option>
                                 <Option>6.06.01.06.001</Option>
                             </Select>
@@ -65,9 +93,11 @@ export function Batuan() {
                             <div className="w-full">
                                 <Input
                                     label="NUP BMN"
-                                    name="nup_bmn"
-                                    id="nup_bmn"
+                                    name="title"
+                                    id="title"
+                                    onChange={handleChange}
                                 />
+                                {errors.title && <p style={{ color: "red" }}>{errors.title}</p>}
                             </div>
                         </div>
                     </CardBody>
@@ -96,6 +126,8 @@ export function Batuan() {
                             </Typography>
                             <Input
                                 label="No Awal"
+                                name="price"
+                                onChange={handleChange}
                             />
                         </div>
                     </CardBody>
@@ -108,12 +140,13 @@ export function Batuan() {
                             >
                                 Satuan
                             </Typography>
-                            <Select className="shadow-lg" label="Pilih Satuan">
-                                <Option>Buah</Option>
-                                <Option>Unit</Option>
-                                <Option>Set</Option>
+                            <Select className="w-full shadow-lg" label="Pilih Satuan" name="satuan" id="satuan">
+                                <Option value="Buah">Buah</Option>
+                                <Option value="Unit">Unit</Option>
+                                <Option value="Set">Set</Option>
                             </Select>
                         </div>
+
                     </CardBody>
 
                     <CardBody>
@@ -311,6 +344,8 @@ export function Batuan() {
                             <Input
                                 className="grid justify-items-start"
                                 label="Nama Koleksi"
+                                name="category"
+                                onChange={handleChange}
                             />
                         </div>
                     </CardBody>
@@ -341,6 +376,9 @@ export function Batuan() {
                             <Textarea
                                 className="grid justify-items-start"
                                 label="Keterangan"
+                                id="description"
+                                name="description"
+                                onChange={handleChange}
                             />
                         </div>
                     </CardBody>
@@ -354,23 +392,23 @@ export function Batuan() {
                                 Umur Geologi
                             </Typography>
                             <Select className="shadow-lg" label="Pilih Umur Geologi">
-                                <Option>Prakambrium</Option>
-                                <Option>Paleozoikum - Kambrium</Option>
-                                <Option>Paleozoikum - Ordovium</Option>
-                                <Option>Paleozoikum - Silur</Option>
-                                <Option>Paleozoikum - Devon</Option>
-                                <Option>Paleozoikum - Karbon</Option>
-                                <Option>Paleozoikum - Perem</Option>
-                                <Option>Mesozoikum  - Trias</Option>
-                                <Option>Mesozoikum  - Jura</Option>
-                                <Option>Mesozoikum  - Kapur</Option>
-                                <Option>Kenozoikum  - Paleogen</Option>
-                                <Option>Kenozoikum  - Eosen</Option>
-                                <Option>Kenozoikum  - Oligosen</Option>
-                                <Option>Kenozoikum  - Miosen</Option>
-                                <Option>Kenozoikum  - Pliosen</Option>
-                                <Option>Kenozoikum  - Plistosen</Option>
-                                <Option>Kenozoikum  - Holosen</Option>
+                                <Option value="Prakambrium">Prakambrium</Option>
+                                <Option value="Paleozoikum - Kambrium">Paleozoikum - Kambrium</Option>
+                                <Option value="Paleozoikum - Ordovium">Paleozoikum - Ordovium</Option>
+                                <Option value="Paleozoikum - Silur">Paleozoikum - Silur</Option>
+                                <Option value="Paleozoikum - Devon">Paleozoikum - Devon</Option>
+                                <Option value="Paleozoikum - Karbon">Paleozoikum - Karbon</Option>
+                                <Option value="Paleozoikum - Perem">Paleozoikum - Perem</Option>
+                                <Option value="Mesozoikum  - Trias">Mesozoikum  - Trias</Option>
+                                <Option value="Mesozoikum  - Jura">Mesozoikum  - Jura</Option>
+                                <Option value="Mesozoikum  - Kapur">Mesozoikum  - Kapur</Option>
+                                <Option value="Kenozoikum  - Paleogen">Kenozoikum  - Paleogen</Option>
+                                <Option value="Kenozoikum  - Eosen">Kenozoikum  - Eosen</Option>
+                                <Option value="Kenozoikum  - Oligosen">Kenozoikum  - Oligosen</Option>
+                                <Option value="Kenozoikum  - Miosen">Kenozoikum  - Miosen</Option>
+                                <Option value="Kenozoikum  - Pliosen">Kenozoikum  - Pliosen</Option>
+                                <Option value="Kenozoikum  - Plistosen">Kenozoikum  - Plistosen</Option>
+                                <Option value="Kenozoikum  - Holosen">Kenozoikum  - Holosen</Option>
                             </Select>
                         </div>
                     </CardBody>
@@ -721,6 +759,8 @@ export function Batuan() {
                             <Input
                                 className="grid justify-items-start"
                                 type="file"
+                                name="image"
+                                onChange={handleChange}
                             />
                         </div>
                     </CardBody>

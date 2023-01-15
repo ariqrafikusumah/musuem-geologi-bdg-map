@@ -12,7 +12,7 @@ import { authorsTableData } from "@/data";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FosilTable } from ".";
-import { PencilIcon, PencilSquareIcon, PrinterIcon } from "@heroicons/react/24/solid";
+import { PencilSquareIcon, PrinterIcon } from "@heroicons/react/24/solid";
 
 
 export function Tables() {
