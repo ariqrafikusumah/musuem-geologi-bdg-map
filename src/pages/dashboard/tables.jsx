@@ -12,7 +12,7 @@ import { authorsTableData } from "@/data";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FosilTable } from ".";
-import { PencilSquareIcon, PrinterIcon } from "@heroicons/react/24/solid";
+import { PencilSquareIcon, PrinterIcon, TrashIcon } from "@heroicons/react/24/solid";
 
 
 export function Tables() {
@@ -221,6 +221,9 @@ export function Tables() {
                       </td>
                       <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
                         <Button className="flex gap-2 bg-blue-gray-900"><PencilSquareIcon className="w-5" />Edit</Button>
+                      </td>
+                      <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
+                        <Button className="flex gap-2 bg-red-900"><TrashIcon className="w-5" />Delete</Button>
                       </td>
                       <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
                         <Checkbox />

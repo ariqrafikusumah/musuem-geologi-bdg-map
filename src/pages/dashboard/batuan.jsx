@@ -15,13 +15,42 @@ import {
 import axios from "axios";
 
 export function Batuan() {
-    const url = "https://fakestoreapi.com";
+    const url = "https://sbc-sebatcabut.herokuapp.com";
     const [formData, setFormData] = useState({
-        title: 'test product',
-        price: 13.5,
-        description: 'lorem ipsum set',
-        image: 'https://i.pravatar.cc',
-        category: 'electronic'
+        id: "639ac7f63153ff7083d5b797",
+        no_register: "MGB-00002938",
+        no_inventaris: "BSE00000001",
+        kode_bmn: "6.06.01.05.005",
+        nup_bmn: "0",
+        merk_bmn: "Batuan",
+        satuan: "Buah",
+        kelompok_koleksi: "Batuan",
+        jenis_koleksi: "Sedimen",
+        sub_jenis_koleksi: "-",
+        kode_jenis_koleksi: "BSE",
+        ruang_simpan: "Gudang 3",
+        lokasi_simpan: "31070101",
+        kondisi: "B/Baik",
+        nama_koleksi: "Batugamping",
+        keterangan: "Batuan Sedimen (Klastik)",
+        nama_formasi: "Bojongmanik",
+        lokasi_temuan: "Desa Ujungjaya, Kec. Sumur, Kab. Pandeglang",
+        koordinat: "Lat/Lon: 6� 49' 31.1268\" S, 105� 28' 35.5764\" E",
+        pulau: "Jawa",
+        peta: "Geologi",
+        lembar_peta: "Ujungkulon",
+        skala: "1:100000",
+        cara_perolehan: "Penyelidikan geologi",
+        tahun_perolehan: "2012",
+        kolektor: "mamang garok",
+        kepemilikan: "Museum Geologi Bandung",
+        operator: "Administrator",
+        tanggal_dicatat: "12/12/2022 6:57",
+        nilai_perolehan: "-",
+        nilai_buku: "-",
+        foto: "test.jpg",
+        foto_2: "testB.jpg",
+        foto_3: "testC.jpg"
     });
 
     const [errors, setErrors] = useState({});
@@ -32,8 +61,8 @@ export function Batuan() {
     }
     const validate = () => {
         const newErrors = {};
-        if (!formData.title) {
-            newErrors.title = "NUP BMN is required", alert('NUP BMN is required');
+        if (!formData.nup_bmn) {
+            newErrors.nup_bmn = "NUP BMN is required", alert('NUP BMN is required');
         }
         return newErrors;
     }
@@ -44,7 +73,7 @@ export function Batuan() {
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
         } else {
-            axios.post(url + '/products', formData)
+            axios.post(url + '/batuan', formData)
                 .then(res => {
                     console.log(res);
                     console.log(res.data);
@@ -74,8 +103,8 @@ export function Batuan() {
                             >
                                 Kategori BMN *
                             </Typography>
-                            <Select className="w-full shadow-lg" label="Pilih Kategori BMN" required>
-                                <Option>6.02.02.99.999</Option>
+                            <Select className="w-full shadow-lg" label="Pilih Kategori BMN" name="kode_bmn" onChange={handleChange} required>
+                                <Option value="6.02.02.99.999">6.02.02.99.999</Option>
                                 <Option>6.06.01.05.005</Option>
                                 <Option>6.06.01.06.001</Option>
                             </Select>
@@ -93,11 +122,11 @@ export function Batuan() {
                             <div className="w-full">
                                 <Input
                                     label="NUP BMN"
-                                    name="title"
-                                    id="title"
+                                    name="nup_bmn"
+                                    id="nup_bmn"
                                     onChange={handleChange}
                                 />
-                                {errors.title && <p style={{ color: "red" }}>{errors.title}</p>}
+                                {errors.nup_bmn && <p style={{ color: "red" }}>{errors.nup_bmn}</p>}
                             </div>
                         </div>
                     </CardBody>
@@ -111,6 +140,8 @@ export function Batuan() {
                                 Tipe BMN
                             </Typography>
                             <Input
+                                name="no_register"
+                                onChange={handleChange}
                                 disabled
                             />
                         </div>
@@ -125,9 +156,9 @@ export function Batuan() {
                                 No Awal
                             </Typography>
                             <Input
-                                label="No Awal"
-                                name="price"
+                                name="no_inventaris"
                                 onChange={handleChange}
+                                label="No Awal"
                             />
                         </div>
                     </CardBody>
@@ -140,7 +171,7 @@ export function Batuan() {
                             >
                                 Satuan
                             </Typography>
-                            <Select className="w-full shadow-lg" label="Pilih Satuan" name="satuan" id="satuan">
+                            <Select className="w-full shadow-lg" label="Pilih Satuan" name="satuan" onChange={handleChange} id="satuan">
                                 <Option value="Buah">Buah</Option>
                                 <Option value="Unit">Unit</Option>
                                 <Option value="Set">Set</Option>
@@ -159,6 +190,8 @@ export function Batuan() {
                             </Typography>
                             <Input
                                 label="Batuan"
+                                name="kelompok_koleksi"
+                                onChange={handleChange}
                                 disabled
                             />
                         </div>
@@ -172,8 +205,8 @@ export function Batuan() {
                             >
                                 Jenis Koleksi *
                             </Typography>
-                            <Select className="shadow-lg" label="Pilih Jenis Koleksi">
-                                <Option>Beku</Option>
+                            <Select className="shadow-lg" label="Pilih Jenis Koleksi" name="jenis_koleksi" onChange={handleChange}>
+                                <Option value="Beku">Beku</Option>
                                 <Option>Impaktit</Option>
                                 <Option>Mineral</Option>
                                 <Option>Metamorf</Option>
@@ -196,6 +229,8 @@ export function Batuan() {
                             <Input
                                 className=""
                                 Label=""
+                                name="sub_jenis_koleksi"
+                                onChange={handleChange}
                                 disabled
                             >
                             </Input>
@@ -213,6 +248,8 @@ export function Batuan() {
                             <Input
                                 className="grid justify-items-start"
                                 label=""
+                                name="kode_jenis_koleksi"
+                                onChange={handleChange}
                                 disabled
                             />
                         </div>
@@ -227,8 +264,8 @@ export function Batuan() {
                                 Ruang Penyimpanan
                             </Typography>
                             <div className="grid grid-rows-1 grid-flow-col gap-4">
-                                <Radio id="dalamnegeri" name="type" label="Storage" />
-                                <Radio id="nonstorage" name="type" label="Non Storage" />
+                                <Radio id="dalamnegeri" name="ruang_simpan" label="Storage" onChange={handleChange}/>
+                                <Radio id="nonstorage" name="ruang_simpan" label="Non Storage" onChange={handleChange}/>
                             </div>
                         </div>
                     </CardBody>
@@ -241,8 +278,8 @@ export function Batuan() {
                             >
                                 Lokasi Penyimpanan :
                             </Typography>
-                            <Select className="shadow-lg" label="Pilih Storage">
-                                <Option>1</Option>
+                            <Select className="shadow-lg" label="Pilih Storage" name="lokasi_simpan" onChange={handleChange}>
+                                <Option value="1">1</Option>
                                 <Option>2</Option>
                                 <Option>3</Option>
                                 <Option>4</Option>
@@ -259,7 +296,7 @@ export function Batuan() {
                                 <Option>15</Option>
                             </Select>
                             <Select className="shadow-lg" label="Pilih Lantai">
-                                <Option>1</Option>
+                                <Option value="1">1</Option>
                                 <Option>2</Option>
                                 <Option>3</Option>
                                 <Option>4</Option>
@@ -325,8 +362,8 @@ export function Batuan() {
                             >
                                 Kondisi
                             </Typography>
-                            <Select className="shadow-lg" label="Pilih Jenis Koleksi">
-                                <Option>B - BAIK</Option>
+                            <Select className="shadow-lg" label="Pilih Jenis Koleksi" name="kondisi" onChange={handleChange}>
+                                <Option value="B - Baik">B - BAIK</Option>
                                 <Option>RR - Rusak Ringan</Option>
                                 <Option>RB - Rusak Berat</Option>
                             </Select>
@@ -344,7 +381,7 @@ export function Batuan() {
                             <Input
                                 className="grid justify-items-start"
                                 label="Nama Koleksi"
-                                name="category"
+                                name="nama_koleksi"
                                 onChange={handleChange}
                             />
                         </div>
@@ -376,8 +413,8 @@ export function Batuan() {
                             <Textarea
                                 className="grid justify-items-start"
                                 label="Keterangan"
-                                id="description"
-                                name="description"
+                                id="keterangan"
+                                name="keterangan"
                                 onChange={handleChange}
                             />
                         </div>
@@ -424,6 +461,7 @@ export function Batuan() {
                             <Input
                                 className="grid justify-items-start"
                                 label="Nama Formasi"
+                                name="nama_formasi"
                             />
                         </div>
                     </CardBody>
@@ -467,13 +505,13 @@ export function Batuan() {
                             >
                                 Lokasi Temuan :
                             </Typography>
-                            <Select className="shadow-lg" label="Pilih Provinsi">
-                                <Option>Jawa Barat</Option>
+                            <Select className="shadow-lg" label="Pilih Provinsi" name="pulau" onChange={handleChange}>
+                                <Option value="Jawa Barat">Jawa Barat</Option>
                                 <Option>Jawa Tengah</Option>
                                 <Option>Jawa Timur</Option>
                             </Select>
-                            <Select className="shadow-lg" label="Pilih Kabupaten/Kota">
-                                <Option>Bandung</Option>
+                            <Select className="shadow-lg" label="Pilih Kabupaten/Kota" name="lokasi_temuan" onChange={handleChange}>
+                                <Option value="Bandung">Bandung</Option>
                                 <Option>Bekasi</Option>
                                 <Option>Jakarta</Option>
                             </Select>
@@ -505,6 +543,8 @@ export function Batuan() {
                                 <Input
                                     className="shadow-lg"
                                     label="Latitude"
+                                    name="koordinat"
+                                    onChange={handleChange}
                                 >
                                 </Input>
                             </div>
@@ -540,7 +580,7 @@ export function Batuan() {
                                 Peta
                             </Typography>
                             <div className="grid grid-rows-2 grid-flow-col gap-4">
-                                <Checkbox id="1" label="Rupa Bumi" />
+                                <Checkbox id="1" value="Rupa Bumi" label="Rupa Bumi" name="peta" onChange={handleChange}/>
                                 <Checkbox id="2" label="Geologi" />
                                 <Checkbox id="3" label="Blad" />
                                 <Checkbox id="4" label="Luar Negeri" />
@@ -556,7 +596,7 @@ export function Batuan() {
                             >
                                 Skala
                             </Typography>
-                            <Select className="w-full shadow-lg" label="Pilh Skala Peta">
+                            <Select className="w-full shadow-lg" label="Pilh Skala Peta" name="skala" onChange={handleChange}>
                                 <Option>1:50.000</Option>
                                 <Option>1:100.000</Option>
                                 <Option>1:250.000</Option>
@@ -575,6 +615,8 @@ export function Batuan() {
                             <Input
                                 className="grid justify-items-start"
                                 label="Lembar Peta"
+                                name="lembar_peta"
+                                onChange={handleChange}
                             />
                         </div>
                     </CardBody>
@@ -587,8 +629,8 @@ export function Batuan() {
                             >
                                 Cara Perolehan
                             </Typography>
-                            <Select className="shadow-lg" label="Pilih Cara Perolehan">
-                                <Option>Pembuatan</Option>
+                            <Select className="shadow-lg" label="Pilih Cara Perolehan" name="cara_perolehan" onChange={handleChange}>
+                                <Option value="Pembuatan">Pembuatan</Option>
                                 <Option>Pembelian</Option>
                                 <Option>Hibah</Option>
                                 <Option>Penyelidikan Geologi</Option>
@@ -607,6 +649,8 @@ export function Batuan() {
                             <Input
                                 className=""
                                 label="Tahun Perolehan"
+                                name="tahun_perolehan"
+                                onChange={handleChange}
                             >
                             </Input>
                         </div>
@@ -623,6 +667,8 @@ export function Batuan() {
                             <Input
                                 className="grid justify-items-start"
                                 label="Determinator"
+                                name="operator"
+                                onChange={handleChange}
                             />
                         </div>
                     </CardBody>
@@ -638,6 +684,8 @@ export function Batuan() {
                             <Input
                                 className="grid justify-items-start"
                                 label="Kolektor"
+                                name="kolektor"
+                                onChange={handleChange}
                             />
                         </div>
                     </CardBody>
@@ -650,8 +698,8 @@ export function Batuan() {
                             >
                                 Kepemilikan Awal
                             </Typography>
-                            <Select className="shadow-lg" label="Pilih Kepemilikan Awal">
-                                <Option>Musuem Geologi Bandung</Option>
+                            <Select className="shadow-lg" label="Pilih Kepemilikan Awal" name="kepemilikan" onChange={handleChange}>
+                                <Option value="Museum Geologi Bandung">Musuem Geologi Bandung</Option>
                                 <Option>Dienst van den Mijnbouw</Option>
                                 <Option>-</Option>
                             </Select>
@@ -684,6 +732,8 @@ export function Batuan() {
                             <Input
                                 className="grid justify-items-start"
                                 label="URL"
+                                name="tanggal_dicatat"
+                                onChange={handleChange}
                             />
                         </div>
                     </CardBody>
@@ -699,6 +749,8 @@ export function Batuan() {
                             <Input
                                 className="grid justify-items-start"
                                 label="Nilai Perolehan"
+                                name="nilai_perolehan"
+                                onChange={handleChange}
                             />
                         </div>
                     </CardBody>
@@ -714,6 +766,8 @@ export function Batuan() {
                             <Input
                                 className="grid justify-items-start"
                                 label="Nilai Buku"
+                                name="nilai_buku"
+                                onChange={handleChange}
                             />
                         </div>
                     </CardBody>
@@ -729,6 +783,8 @@ export function Batuan() {
                             <Input
                                 className="grid justify-items-start"
                                 type="file"
+                                name="foto"
+                                onChange={handleChange}
                             />
                         </div>
                     </CardBody>
@@ -744,6 +800,8 @@ export function Batuan() {
                             <Input
                                 className="grid justify-items-start"
                                 type="file"
+                                name="foto_2"
+                                onChange={handleChange}
                             />
                         </div>
                     </CardBody>
@@ -759,7 +817,7 @@ export function Batuan() {
                             <Input
                                 className="grid justify-items-start"
                                 type="file"
-                                name="image"
+                                name="foto_3"
                                 onChange={handleChange}
                             />
                         </div>
