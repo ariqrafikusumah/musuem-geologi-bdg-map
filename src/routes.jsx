@@ -7,7 +7,7 @@ import {
   ArrowRightOnRectangleIcon,
   UserPlusIcon,
 } from "@heroicons/react/24/solid";
-import { Home, Profile, Tables, Batuan, Sumberdayageologi, Fosil } from "@/pages/dashboard";
+import { Home, Profile, Tables, Batuan, Sumberdayageologi, Fosil,Batuanedit } from "@/pages/dashboard";
 import { SignIn, SignUp } from "@/pages/auth";
 // import React from "react-router-dom";
 
@@ -54,6 +54,11 @@ export const routes = [
         name: "Sumber Daya Geologi",
         path: "/sumberdayageologi",
         element: <Sumberdayageologi />,
+      },
+      {
+        name: "",
+        path: "/batuanedit",
+        element: <Batuanedit />,
       },
     ],
   },

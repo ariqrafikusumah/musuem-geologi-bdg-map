@@ -8,6 +8,8 @@ import {
 } from "@material-tailwind/react";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
+
+
 export function Notifications() {
   const [showAlerts, setShowAlerts] = React.useState({
     blue: true,
