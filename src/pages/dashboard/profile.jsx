@@ -40,7 +40,7 @@ export function Profile() {
               />
               <div>
                 <Typography variant="h5" color="blue-gray" className="mb-1">
-                  Ariq Rafi Kusumah
+                  MUSEUM GEOLOGI BANDUNG
                 </Typography>
                 <Typography
                   variant="small"
@@ -101,9 +101,9 @@ export function Profile() {
               title="Profile Information"
               description="Hi, I'm Alec Thompson, Decisions: If you can't decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality)."
               details={{
-                "first name": "Ariq Rafi Kusumah",
+                "first name": "museumgeologi@gmail.com",
                 mobile: "(62) 812 8144 4295",
-                email: "ariqrafikusumah@gmail.com",
+                email: "museumgeologibandung@gmail.com",
                 location: "INA",
                 social: (
                   <div className="flex items-center gap-4">
