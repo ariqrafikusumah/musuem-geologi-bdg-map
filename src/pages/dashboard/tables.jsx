@@ -15,6 +15,7 @@ import { FosilTable } from ".";
 import { PencilSquareIcon, PrinterIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import batuanEdit from "./batuanedit";
+import  {SdgTabel}  from ".";
 
 // const deleteData = async () => {
 //   try {
@@ -264,7 +265,7 @@ export function Tables() {
         </Card>
 
         <FosilTable />
-
+                    <SdgTabel/>
       </div>
     );
 }
