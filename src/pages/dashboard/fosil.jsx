@@ -17,14 +17,14 @@ import axios from "axios";
 export function Fosil() {
     const url = "https://sbc-sebatcabut.herokuapp.com";
     const [formData, setFormData] = useState({
-        id: "",
-        no_register: "",
-        no_inventaris: "",    
-        nama_koleksi: "",
-        lokasi_temuan: "",
-        tahun_perolehan: "",
-        deteminator: "",
-        keterangan: "",
+        "id": "638da9a8dba540cf8b62b889",
+"no_register": "MGB-00000003",
+"no_inventaris": "FIM00000003",
+"nama_koleksi": "Trigonostoma (Scalptia) atjehense Oostingh",
+"lokasi_temuan": "Lok.365, Peusangan, Atjeh",
+"tahun_perolehan": "1938",
+"determinator": "Oostingh",
+"keterangan": "Label Fosil"
        
     });
 
