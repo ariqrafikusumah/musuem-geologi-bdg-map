@@ -11,7 +11,20 @@ import {
 import { authorsTableData } from "@/data";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { PencilSquareIcon, PrinterIcon, TrashIcon } from "@heroicons/react/24/solid";
 
+const handleDelete = async (id) => {
+    try {
+        const response = await axios.delete(`http://sbc-sebatcabut.herokuapp.com/fosil/${id}`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        console.log(response);
+    } catch (error) {
+        console.error(error);
+    }
+  };
 
 export function FosilTable() {
 
@@ -82,32 +95,47 @@ export function FosilTable() {
                             </thead>
                             <tbody>
 
-                                {data &&
-                                    data.map((item) => (
-                                        <tr className="border-b border-blue-gray-50 py-3 px-5 text-left" key={item}>{item.id.toUpperCase()}
-                                            <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
-                                                {item.no_register}
-                                            </td>
-                                            <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
-                                                {item.no_inventaris}
-                                            </td>
-                                            <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
-                                                {item.kode_bmn}
-                                            </td>
-                                            <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
-                                                {item.nama_koleksi}
-                                            </td>
-                                            <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
-
-                                            </td>
-                                            <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
-                                                {item.lokasi_simpan}
-                                            </td>
-                                            <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
-                                                {item.keterangan}
-                                            </td>
-                                        </tr>
-                                    ))}
+                            {data &&
+                  data.map((item) => (
+                    <tr className="border-b border-blue-gray-50 py-3 px-5 text-left" key={item}>{item.id.toUpperCase()}
+                      <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
+                        <Typography
+                          variant="3"
+                        >
+                          {item.no_register}
+                        </Typography>
+                      </td>
+                      <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
+                        {item.no_inventaris}
+                      </td>
+                      <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
+                        {item.kode_bmn}
+                      </td>
+                      <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
+                        {item.nama_koleksi}
+                      </td>
+                      <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
+                      </td>
+                      <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
+                        {item.lokasi_simpan}
+                      </td>
+                      <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
+                        {item.keterangan}
+                      </td>
+                      <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
+                        <Button className="flex gap-2"><PrinterIcon className="w-5" /> Cetak</Button>
+                      </td>
+                      <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
+                       <a href={`batuanedit`} className="flex gap-2 bg-blue-gray-900"><PencilSquareIcon className="w-5" />Edit</a>
+                      </td>
+                      <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
+                        <Button className="flex gap-2 bg-red-900" onClick={()=> handleDelete(item.id) }><TrashIcon className="w-5" />Delete</Button>
+                      </td>
+                      <td className="border-b border-blue-gray-50 py-3 px-5 text-left">
+                        <Checkbox />
+                      </td>
+                    </tr>
+                  ))}
                             </tbody>
                         </table>
                     </CardBody>

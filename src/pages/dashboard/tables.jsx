@@ -264,8 +264,9 @@ export function Tables() {
           </CardBody>
         </Card>
 
-        <FosilTable />
+
                     <SdgTabel/>
+                    <FosilTable />
       </div>
     );
 }
